@@ -8,3 +8,6 @@ services:
       - "8443:8443"
       - "8463:8463"
       - "8787:8787"
+    environment:
+      KEYCLOAK_USER: onwelo
+      KEYCLOAK_PASSWORD: workshop
