@@ -19,17 +19,29 @@ repositories {
 extra["springCloudVersion"] = "Hoxton.SR1"
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-starter-security")
-	implementation("org.springframework.boot:spring-boot-starter-webflux")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	// kotlin
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-	implementation("org.liquibase:liquibase-core")
-	implementation("org.springframework.cloud:spring-cloud-starter-config")
+
+	// security
+//	implementation("org.springframework.boot:spring-boot-starter-security")
+
+	// web
+//	implementation("org.springframework.boot:spring-boot-starter-webflux")
+	implementation("org.springframework.boot:spring-boot-starter-data-rest")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+	// persistance
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+//    implementation("org.liquibase:liquibase-core")
 	runtimeOnly("com.h2database:h2")
-	runtimeOnly("org.postgresql:postgresql")
+//	runtimeOnly("org.postgresql:postgresql")
+
+	// config
+	implementation("org.springframework.cloud:spring-cloud-starter-config")
+
+	// tests
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
