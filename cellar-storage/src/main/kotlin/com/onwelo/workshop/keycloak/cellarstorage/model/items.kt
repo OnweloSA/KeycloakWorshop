@@ -1,28 +1,24 @@
 package com.onwelo.workshop.keycloak.cellarstorage.model
 
 import java.time.LocalDate
-import java.time.LocalDateTime
 import javax.persistence.*
 
 enum class Type {
-        JAM, TINCTURE, ENSILAGE, SALAD, SAUCE
+    JAM, TINCTURE, ENSILAGE, SALAD, SAUCE
 }
 
-//@MappedSuperclass
 @Entity
 @Table(name = "preserves")
 class Preserve(
         id: Long,
         version: Long = 0,
-        created: LocalDateTime? = null,
-        updated: LocalDateTime? = null,
+
+        @Column(name = "name", nullable = false, unique = true)
+        var name: String,
 
         @Enumerated(EnumType.STRING)
         @Column(name = "type", nullable = false)
         var type: Type,
-
-        @Column(name = "name", nullable = false)
-        var name: String,
 
         @Column(name = "expiration_date")
         var expirationDate: LocalDate,
@@ -33,4 +29,4 @@ class Preserve(
         @ManyToOne
         @JoinColumn(name = "shelf_id", nullable = false)
         var shelf: Shelf
-) : AbstractModel(id, version, created, updated)
+) : AbstractModel(id, version)

@@ -34,12 +34,12 @@ dependencies {
 
 	// persistance
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-//    implementation("org.liquibase:liquibase-core")
+    implementation("org.liquibase:liquibase-core")
 	runtimeOnly("com.h2database:h2")
 //	runtimeOnly("org.postgresql:postgresql")
 
 	// config
-	implementation("org.springframework.cloud:spring-cloud-starter-config")
+//	implementation("org.springframework.cloud:spring-cloud-starter-config")
 
 	// tests
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {

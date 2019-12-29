@@ -1,6 +1,5 @@
 package com.onwelo.workshop.keycloak.cellarstorage.model
 
-import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
@@ -8,10 +7,8 @@ import javax.persistence.*
 class Shelf(
         id: Long,
         version: Long = 0,
-        created: LocalDateTime? = null,
-        updated: LocalDateTime? = null,
 
-        @Column(name = "name", nullable = false)
+        @Column(name = "name", nullable = false, unique = true)
         var name: String,
 
         @Column(name = "description")
@@ -23,4 +20,4 @@ class Shelf(
 
         @OneToMany(mappedBy = "shelf")
         var preserves: Set<Preserve>?
-) : AbstractModel(id, version, created, updated)
+) : AbstractModel(id, version)
