@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~bootstrap/dist/css/bootstrap.css';
+
+.add-object-btn {
+  margin: 10px;
+}
+
+.jpk-header {
+  margin: 10px;
+  font-size: 3rem;
+}
