@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <h2 class="modal-title">Szczegoły firmy</h2>
+  <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
+<!--  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">-->
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<form [formGroup]="preserveForm">
+<!--<form [formGroup]="preserveForm" (submit)="onSubmit()">-->
+
+  <div class="form-group">
+    <label>
+      Nazwa:
+      <input type="text" class="form-control" formControlName="name" [ngClass]="{'is-invalid': getError('name')!=null}">
+    </label>
+    <app-error-message *ngIf="getError('name')" [error]="getError('name')"></app-error-message>
+  </div>
+
+  <div class="form-group">
+    <label>
+      Opis:
+      <input type="text" class="form-control" formControlName="description" [ngClass]="{'is-invalid': getError('description')!=null}">
+    </label>
+    <app-error-message *ngIf="getError('description')" [error]="getError('description')"></app-error-message>
+  </div>
+
+  <div class="form-group">
+    <label>
+      Rodzaj:
+      <input type="text" class="form-control" formControlName="type" [ngClass]="{'is-invalid': getError('type')!=null}">
+    </label>
+    <app-error-message *ngIf="getError('type')" [error]="getError('type')"></app-error-message>
+  </div>
+
+  <div class="form-group">
+    <label>
+      Data przydatności:
+      <input type="text" class="form-control" formControlName="expirationDate" [ngClass]="{'is-invalid': getError('expirationDate')!=null}">
+    </label>
+    <app-error-message *ngIf="getError('expirationDate')" [error]="getError('expirationDate')"></app-error-message>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" [disabled]="preserveForm.pristine" class="btn btn-secondary">Zapisz</button>
+  </div>
+</form>

@@ -15,5 +15,4 @@ export class PreservesService {
   getPreserves(): Observable<any> {
     return this.httpClient.get<any>(PreservesService.endpoint);
   }
-
 }

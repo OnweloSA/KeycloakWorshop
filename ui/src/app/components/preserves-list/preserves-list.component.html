@@ -13,8 +13,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let preserve of preservatives; let i = index">
-<!--  <tr *ngFor="let rack of racks; let i = index" (click)="openDetails(rack.companyCode)">-->
+  <tr *ngFor="let preserve of preservatives; let i = index" (click)="openDetails(preserve)">
     <th scope="row">{{i}}</th>
     <th>{{preserve.name}}</th>
     <th>{{preserve.description}}</th>

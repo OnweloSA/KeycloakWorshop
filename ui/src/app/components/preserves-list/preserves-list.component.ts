@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalModule } from "ngx-bootstrap";
+import { BsModalService } from "ngx-bootstrap";
 import { Preservative } from "../../models/preservative";
 import { PreservesService } from "../../preserves.service";
+import { PreserveDetailsComponent } from "../preserve-details/preserve-details.component";
 
 @Component({
   selector: 'app-preserves-list',
@@ -13,7 +14,7 @@ export class PreservesListComponent implements OnInit {
   preservatives: Preservative[];
 
   constructor(private preservesService: PreservesService,
-              private modalService: ModalModule) {
+              private bsModalService: BsModalService) {
   }
 
   ngOnInit() {
@@ -24,16 +25,18 @@ export class PreservesListComponent implements OnInit {
         this.preservatives = data._embedded.preserves;
       });
   }
-  //
-  // openDetails(companyCode: string) {
-  //   const modalRef = this.modalService.open(CompanyDetailsComponent, {
-  //     backdrop: 'static',
-  //     keyboard: false
-  //   });
-  //   modalRef.componentInstance.companyCode = companyCode;
-  // }
-  //
-  // openNewCompany() {
+
+  openDetails(preserve: Preservative) {
+    const modalRef = this.bsModalService.show(PreserveDetailsComponent, {
+      backdrop: 'static',
+      keyboard: false,
+      initialState: {
+        preserve: preserve
+      }
+    });
+  }
+
+  // createNewCompany() {
   //   this.modalService.open(CompanyDetailsComponent, {
   //     backdrop: 'static',
   //     keyboard: false

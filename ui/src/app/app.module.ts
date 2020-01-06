@@ -7,20 +7,29 @@ import { PreservesListComponent } from './components/preserves-list/preserves-li
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PreservesService } from "./preserves.service";
 import { HttpClientModule } from "@angular/common/http";
+import { PreserveDetailsComponent } from './components/preserve-details/preserve-details.component';
+import { ReactiveFormsModule } from "@angular/forms";
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PreservesListComponent
+    PreservesListComponent,
+    PreserveDetailsComponent,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     ModalModule.forRoot()
   ],
   providers: [
     PreservesService
+  ],
+  entryComponents: [
+    PreserveDetailsComponent
   ],
   bootstrap: [AppComponent]
 })
