@@ -26,7 +26,7 @@ class Preserve(
         var type: Type,
 
         @Column(name = "expiration_date")
-        var expirationDate: LocalDate,
+        var expirationDate: LocalDate?,
 
         @Column(name = "description")
         var description: String?

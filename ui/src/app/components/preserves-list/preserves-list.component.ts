@@ -20,8 +20,6 @@ export class PreservesListComponent implements OnInit {
   ngOnInit() {
     this.preservesService.getPreserves()
       .subscribe((data: any) => {
-        console.log(data);
-        console.log(data._embedded);
         this.preservatives = data._embedded.preserves;
       });
   }

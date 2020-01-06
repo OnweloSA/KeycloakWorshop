@@ -1,16 +1,12 @@
 export class Preservative {
 
-  name: String;
+  name: string;
 
-  description: String;
+  description: string;
 
-  type: String;
+  type: string;
 
-  expirationDate: String;
+  expirationDate: string;
 
-  _links: Map<String, Map<String, String>>;
-
-  getSelfLink() : String {
-    return this._links.get('self').get('href')
-  }
+  _links: any;
 }

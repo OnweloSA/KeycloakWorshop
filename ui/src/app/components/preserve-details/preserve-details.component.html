@@ -1,13 +1,11 @@
 <div class="modal-header">
-  <h2 class="modal-title">Szczegoły firmy</h2>
+  <h2 class="modal-title">Szczegóły przetworu</h2>
   <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
-<!--  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">-->
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 
-<form [formGroup]="preserveForm">
-<!--<form [formGroup]="preserveForm" (submit)="onSubmit()">-->
+<form [formGroup]="preserveForm" (submit)="onSubmit()">
 
   <div class="form-group">
     <label>

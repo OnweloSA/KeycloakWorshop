@@ -31,25 +31,26 @@ export class PreserveDetailsComponent implements OnInit {
     }
   }
 
-  //
-  // onSubmit() {
-  //   console.warn(this.preserveForm.value);
-  //     // nowa firma
-  //   if (this.companyCode == null) {
-  //     this.preservesService.savePreserve(this.preserveForm.getRawValue()).subscribe(() => {
-  //       this.activeModal.close();
-  //     }, error => {
-  //       this.handleErrors(error);
-  //     });
-  //   } else {
-  //   // edycja firmy
-  //     this.preservesService.updatePreserve(this.preserveForm.getRawValue()).subscribe(() => {
-  //       this.activeModal.close();
-  //     }, error => {
-  //       this.handleErrors(error);
-  //     });
-  //   }
-  // }
+  onSubmit() {
+    console.warn(this.preserve);
+    console.warn(this.preserveForm.value);
+      // nowa firma
+    if (this.preserve == null) {
+      this.preservesService.savePreserve(this.preserveForm.getRawValue()).subscribe(() => {
+        this.bsModalRef.hide();
+      }, error => {
+        this.handleErrors(error);
+      });
+    } else {
+    // edycja firmy
+      let updateUrl = this.preserve._links.self.href;
+      this.preservesService.updatePreserve(updateUrl, this.preserveForm.getRawValue()).subscribe(() => {
+        this.bsModalRef.hide();
+      }, error => {
+        this.handleErrors(error);
+      });
+    }
+  }
 
   getError(controlName: string): string {
     if (this.preserveForm.get(controlName).errors) {
