@@ -1,0 +1,25 @@
+<h2 class="kw-header">Lista rzeczy w schowku</h2>
+
+<!--<button type="button" class="add-object-btn btn btn-secondary" (click)="openNewCompany()">Dodaj firmę</button>-->
+
+<table class="table table-striped table-hover table-sm">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Description</th>
+    <th scope="col">Type</th>
+    <th scope="col">Expiration date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let preserve of preservatives; let i = index">
+<!--  <tr *ngFor="let rack of racks; let i = index" (click)="openDetails(rack.companyCode)">-->
+    <th scope="row">{{i}}</th>
+    <th>{{preserve.name}}</th>
+    <th>{{preserve.description}}</th>
+    <th>{{preserve.type}}</th>
+    <th>{{preserve.expirationDate}}</th>
+  </tr>
+  </tbody>
+</table>
