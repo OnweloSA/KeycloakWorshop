@@ -27,7 +27,7 @@ export class PreservesListComponent implements OnInit {
   }
 
   openDetails(preserve: Preservative) {
-    const modalRef = this.bsModalService.show(PreserveDetailsComponent, {
+    this.bsModalService.show(PreserveDetailsComponent, {
       backdrop: 'static',
       keyboard: false,
       initialState: {
@@ -36,11 +36,11 @@ export class PreservesListComponent implements OnInit {
     });
   }
 
-  // createNewCompany() {
-  //   this.modalService.open(CompanyDetailsComponent, {
-  //     backdrop: 'static',
-  //     keyboard: false
-  //   });
-  // }
+  newPreserve() {
+    this.bsModalService.show(PreserveDetailsComponent, {
+      backdrop: 'static',
+      keyboard: false
+    });
+  }
 
 }
