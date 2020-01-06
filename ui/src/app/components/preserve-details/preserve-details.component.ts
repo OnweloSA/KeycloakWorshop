@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Preservative } from "../../models/preservative";
 import { PreservesService } from "../../preserves.service";
@@ -12,6 +12,7 @@ import { BsModalRef } from "ngx-bootstrap";
 export class PreserveDetailsComponent implements OnInit {
   @Input() preserve: Preservative;
   public preserveForm: FormGroup = new FormGroup({});
+  public event: EventEmitter<any> = new EventEmitter();
 
   constructor(public bsModalRef: BsModalRef,
               private preservesService: PreservesService,
@@ -34,18 +35,20 @@ export class PreserveDetailsComponent implements OnInit {
   onSubmit() {
     console.warn(this.preserve);
     console.warn(this.preserveForm.value);
-      // nowa firma
+    // nowa firma
     if (this.preserve == null) {
       this.preservesService.savePreserve(this.preserveForm.getRawValue()).subscribe(() => {
         this.bsModalRef.hide();
+        this.triggerParentReload();
       }, error => {
         this.handleErrors(error);
       });
     } else {
-    // edycja firmy
+      // edycja firmy
       let updateUrl = this.preserve._links.self.href;
       this.preservesService.updatePreserve(updateUrl, this.preserveForm.getRawValue()).subscribe(() => {
         this.bsModalRef.hide();
+        this.triggerParentReload();
       }, error => {
         this.handleErrors(error);
       });
@@ -67,5 +70,8 @@ export class PreserveDetailsComponent implements OnInit {
     });
   }
 
+  triggerParentReload() {
+    this.event.emit({});
+  }
 
 }

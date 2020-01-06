@@ -18,6 +18,10 @@ export class PreservesListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.fetchData();
+  }
+
+  private fetchData() {
     this.preservesService.getPreserves()
       .subscribe((data: any) => {
         this.preservatives = data._embedded.preserves;
@@ -25,19 +29,25 @@ export class PreservesListComponent implements OnInit {
   }
 
   openDetails(preserve: Preservative) {
-    this.bsModalService.show(PreserveDetailsComponent, {
+    let bsModalRef = this.bsModalService.show(PreserveDetailsComponent, {
       backdrop: 'static',
       keyboard: false,
       initialState: {
         preserve: preserve
       }
     });
+    bsModalRef.content.event.subscribe(_ => {
+      this.fetchData();
+    });
   }
 
   newPreserve() {
-    this.bsModalService.show(PreserveDetailsComponent, {
+    let bsModalRef = this.bsModalService.show(PreserveDetailsComponent, {
       backdrop: 'static',
       keyboard: false
+    });
+    bsModalRef.content.event.subscribe(_ => {
+      this.fetchData();
     });
   }
 
