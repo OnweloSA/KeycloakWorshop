@@ -10,8 +10,13 @@ enum class Type {
 @Entity
 @Table(name = "preserves")
 class Preserve(
-        id: Long,
-        version: Long = 0,
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "id", nullable = false)
+        var id: Long? = null,
+
+        @Version
+        var version: Long = 0,
 
         @Column(name = "name", nullable = false, unique = true)
         var name: String,
@@ -24,9 +29,5 @@ class Preserve(
         var expirationDate: LocalDate,
 
         @Column(name = "description")
-        var description: String?,
-
-        @ManyToOne
-        @JoinColumn(name = "shelf_id", nullable = false)
-        var shelf: Shelf
-) : AbstractModel(id, version)
+        var description: String?
+)

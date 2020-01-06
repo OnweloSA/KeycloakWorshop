@@ -4,8 +4,8 @@ import { PreservesListComponent } from "./components/preserves-list/preserves-li
 
 
 const appRouter: Routes = [
-  {path: 'racks', component: PreservesListComponent},
-  {path: '**', redirectTo: 'racks'}
+  {path: 'preserves', component: PreservesListComponent},
+  {path: '**', redirectTo: 'preserves'}
 ];
 
 @NgModule({

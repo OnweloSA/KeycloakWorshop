@@ -8,7 +8,7 @@ import { environment } from "../environments/environment";
 })
 export class PreservesService {
 
-  private static endpoint = environment.serverUrl + '/preservatives';
+  private static endpoint = environment.serverUrl + '/preserves';
 
   constructor(private httpClient: HttpClient) { }
 

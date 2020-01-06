@@ -6,5 +6,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource
 import org.springframework.web.bind.annotation.CrossOrigin
 
 @CrossOrigin
-@RepositoryRestResource(collectionResourceRel = "preservatives", path = "preservatives")
+@RepositoryRestResource(collectionResourceRel = "preserves", path = "preserves")
 interface PreservativeRepository : PagingAndSortingRepository<Preserve, Long>
