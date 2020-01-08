@@ -7,6 +7,7 @@ import org.keycloak.adapters.spi.HttpFacade
 import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
@@ -20,14 +21,14 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 import java.io.FileInputStream
 
 
-private const val DEFAULT_KEYCLOAK_FILENAME: String = "keycloak.json"
-
-
 @Configuration
 @EnableWebSecurity
 @ComponentScan(basePackageClasses =  [KeycloakSecurityComponents::class])
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
-class SecurityConfig : KeycloakWebSecurityConfigurerAdapter() {
+class SecurityConfig(
+    @Value("\${keycloak.filename}")
+    private val keycloakFilename: String
+) : KeycloakWebSecurityConfigurerAdapter() {
 
     @Autowired
     private fun configureGlobal(auth: AuthenticationManagerBuilder) {
@@ -41,7 +42,7 @@ class SecurityConfig : KeycloakWebSecurityConfigurerAdapter() {
 
     @Bean
     fun keycloakConfigResolver(): KeycloakConfigResolver {
-        return PathBasedKeycloakConfigResolver()
+        return PathBasedKeycloakConfigResolver(keycloakFilename)
     }
 
     override fun configure(http: HttpSecurity?) {
@@ -53,10 +54,12 @@ class SecurityConfig : KeycloakWebSecurityConfigurerAdapter() {
 
 }
 
-internal class PathBasedKeycloakConfigResolver : KeycloakConfigResolver {
+internal class PathBasedKeycloakConfigResolver(
+        private val keycloakFilename: String
+) : KeycloakConfigResolver {
 
     override fun resolve(facade: HttpFacade.Request?): KeycloakDeployment {
-        val confFile = SecurityConfig::class.java.classLoader.getResource(DEFAULT_KEYCLOAK_FILENAME)!!.file
+        val confFile = SecurityConfig::class.java.classLoader.getResource(keycloakFilename)!!.file
         return KeycloakDeploymentBuilder.build(FileInputStream(confFile))
     }
 

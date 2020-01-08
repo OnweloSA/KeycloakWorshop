@@ -1,0 +1,8 @@
+{
+  "realm": "onwelo-workshop",
+  "auth-server-url": "http://auth:8080/auth/",
+  "ssl-required": "external",
+  "resource": "cellar-storage",
+  "public-client": true,
+  "use-resource-role-mappings": true
+}
