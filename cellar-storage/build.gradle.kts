@@ -25,7 +25,8 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
 	// security
-//	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.keycloak:keycloak-spring-security-adapter:8.0.1")
+	implementation("org.springframework.boot:spring-boot-starter-security")
 
 	// web
 //	implementation("org.springframework.boot:spring-boot-starter-webflux")

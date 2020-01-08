@@ -4,7 +4,9 @@ services:
     image: keycloak-workshop/keycloak:latest
     ports:
       - "443:443"
+      - "8081:8080"
       - "8100:8100"
+      - "8180:8180"
       - "8443:8443"
       - "8463:8463"
       - "8787:8787"
