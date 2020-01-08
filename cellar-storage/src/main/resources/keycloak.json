@@ -1,5 +1,5 @@
 {
-  "realm": "master",
+  "realm": "onwelo-workshop",
   "auth-server-url": "http://127.0.0.1:8081/auth/",
   "ssl-required": "external",
   "resource": "cellar-storage",
