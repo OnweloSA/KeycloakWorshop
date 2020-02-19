@@ -1,7 +1,53 @@
 version: "3"
 services:
+#  Keycloak - SSO
   auth:
     image: keycloak-workshop/keycloak:latest
     ports:
-      - "8081:8080"
+      - "8080:8080"
       - "8443:8443"
+# Pierwsza para backend - frontend
+  cellar-storage1:
+    image: keycloak-workshop/cellar-storage:latest
+    ports:
+      - "8081:8080"
+    environment:
+      - JAVA_OPTS=-Xmx1024M -Dspring.profiles.active=docker
+    depends_on:
+      - auth
+  ui1:
+    image: keycloak-workshop/ui:latest
+    ports:
+      - "4201:80"
+    depends_on:
+      - auth
+# Druga para backend - frontend
+  cellar-storage2:
+    image: keycloak-workshop/cellar-storage:latest
+    ports:
+      - "8082:8080"
+    environment:
+      - JAVA_OPTS=-Xmx1024M -Dspring.profiles.active=docker
+    depends_on:
+      - auth
+  ui2:
+    image: keycloak-workshop/ui:latest
+    ports:
+      - "4202:80"
+    depends_on:
+      - auth
+# Trzecia para backend - frontend
+  cellar-storage3:
+    image: keycloak-workshop/cellar-storage:latest
+    ports:
+      - "8083:8080"
+    environment:
+      - JAVA_OPTS=-Xmx1024M -Dspring.profiles.active=docker
+    depends_on:
+      - auth
+  ui3:
+    image: keycloak-workshop/ui:latest
+    ports:
+      - "4203:80"
+    depends_on:
+      - auth

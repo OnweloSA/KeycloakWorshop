@@ -18,7 +18,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.authentication.session.NullAuthenticatedSessionStrategy
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy
-import java.io.FileInputStream
 
 
 @Configuration
@@ -59,8 +58,8 @@ internal class PathBasedKeycloakConfigResolver(
 ) : KeycloakConfigResolver {
 
     override fun resolve(facade: HttpFacade.Request?): KeycloakDeployment {
-        val confFile = SecurityConfig::class.java.classLoader.getResource(keycloakFilename)!!.file
-        return KeycloakDeploymentBuilder.build(FileInputStream(confFile))
+        val confFile = SecurityConfig::class.java.classLoader.getResourceAsStream(keycloakFilename)!!
+        return KeycloakDeploymentBuilder.build(confFile)
     }
 
 }

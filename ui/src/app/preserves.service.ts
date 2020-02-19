@@ -9,11 +9,12 @@ import { Preservative } from "./models/preservative";
 })
 export class PreservesService {
 
-  private static endpoint = environment.serverUrl + '/preserves';
+  private static endpoint = environment.proxy[window.location.host] + '/preserves';
 
   constructor(private httpClient: HttpClient) { }
 
   getPreserves(): Observable<any> {
+    console.log(`Sending request to ${PreservesService.endpoint}`);
     return this.httpClient.get<any>(PreservesService.endpoint);
   }
 

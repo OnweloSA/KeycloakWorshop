@@ -24,7 +24,10 @@ export class PreservesListComponent implements OnInit {
   private fetchData() {
     this.preservesService.getPreserves()
       .subscribe((data: any) => {
+        console.log(`Received response ${data}`);
         this.preservatives = data._embedded.preserves;
+      }, (error:any) => {
+        console.log(error);
       });
   }
 
