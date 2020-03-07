@@ -6,6 +6,18 @@ services:
     ports:
       - "8080:8080"
       - "8443:8443"
+    environment:
+      - DB_ADDR=postgres
+      - DB_USER=keycloak
+      - DB_PASSWORD=password
+  postgres:
+    image: postgres:alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=keycloak
+      - POSTGRES_USER=keycloak
+      - POSTGRES_PASSWORD=password
 # Pierwsza para backend - frontend
   cellar-storage1:
     image: keycloak-workshop/cellar-storage:latest
@@ -22,32 +34,32 @@ services:
     depends_on:
       - auth
 # Druga para backend - frontend
-  cellar-storage2:
-    image: keycloak-workshop/cellar-storage:latest
-    ports:
-      - "8082:8080"
-    environment:
-      - JAVA_OPTS=-Xmx1024M -Dspring.profiles.active=docker
-    depends_on:
-      - auth
-  ui2:
-    image: keycloak-workshop/ui:latest
-    ports:
-      - "4202:80"
-    depends_on:
-      - auth
-# Trzecia para backend - frontend
-  cellar-storage3:
-    image: keycloak-workshop/cellar-storage:latest
-    ports:
-      - "8083:8080"
-    environment:
-      - JAVA_OPTS=-Xmx1024M -Dspring.profiles.active=docker
-    depends_on:
-      - auth
-  ui3:
-    image: keycloak-workshop/ui:latest
-    ports:
-      - "4203:80"
-    depends_on:
-      - auth
+#  cellar-storage2:
+#    image: keycloak-workshop/cellar-storage:latest
+#    ports:
+#      - "8082:8080"
+#    environment:
+#      - JAVA_OPTS=-Xmx1024M -Dspring.profiles.active=docker
+#    depends_on:
+#      - auth
+#  ui2:
+#    image: keycloak-workshop/ui:latest
+#    ports:
+#      - "4202:80"
+#    depends_on:
+#      - auth
+## Trzecia para backend - frontend
+#  cellar-storage3:
+#    image: keycloak-workshop/cellar-storage:latest
+#    ports:
+#      - "8083:8080"
+#    environment:
+#      - JAVA_OPTS=-Xmx1024M -Dspring.profiles.active=docker
+#    depends_on:
+#      - auth
+#  ui3:
+#    image: keycloak-workshop/ui:latest
+#    ports:
+#      - "4203:80"
+#    depends_on:
+#      - auth

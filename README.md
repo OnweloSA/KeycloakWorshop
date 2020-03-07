@@ -2,6 +2,13 @@
 
 This project shows simple examples of keycloak usage. It's used as a working base for Onwelo Keycloak workshops.
 
+
+### Add IDP integration - GitHub
+
+Go into https://github.com and log in. Next select your profile and then setting.
+In `Developer setting` tab choose `OAuth Apps`
+
+
 ### Export realm with users
 
 Simple export of realm can be done via the keycloak UI.
